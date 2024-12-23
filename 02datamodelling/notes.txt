@@ -1,0 +1,18 @@
+eraser.io
+moon modeler
+
+data modelling
+
+code sandbox
+github codespace
+stackblitz
+
+mongoose helps to make schema
+schema is a method which takes object
+
+mongoDB converts model to plural and lowercase : User -> users
+
+mongoose gives custom validator
+
+cloudinary
+images can be stored in databases in buffer format, but they make database heavy, hence their public url is stored

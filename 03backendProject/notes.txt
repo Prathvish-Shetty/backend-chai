@@ -1,0 +1,172 @@
+git dont track empty folders, hence keep .gitkeep file in that folder
+public is used to keep images temporarily and then store them in cloud  
+
+use gitignore generator to generate contents of ideal gitignore file
+
+--watch 
+
+npm i -D nodemon
+
+git status
+
+controllers - functionality, db - db connection logic, middlewares, models, routes, utils = utilities(mail, file uploading)
+
+npm i -D prettier
+
+modular and reusable code
+
+MongoDB Atlas : network access, database access, quickstart, password can be updated there
+
+npm uninstall express mongoose dotenv
+
+while talking to database use try catch and async await as database is in different continent
+
+db connection can be done in index.js, good approach but we can do better by dooing it in db/index.js
+/*
+import mongoose from 'mongoose'
+import { DB_NAME } from './constants'
+import express from 'express'
+const app = express()
+(async () => {
+    try {
+        await mongoose.connect(`${process.env.MONGODB_URL}/${DB_NAME}`)
+        app.on("error", (error) => {    // listener - if express cant talk to db
+            console.log("ERROR: ", error)
+            throw error
+        })
+        app.listen(process.env.PORT, () => {
+            console.log(`App is listening on port ${process.env.PORT}`)
+        })
+    } catch (error) {
+        console.error("ERROR: ", error)
+        throw error
+    }
+})()
+*/
+
+what is process.exit(1) or process.exitCode in nodejs, 0 is success
+
+require('dotenv').config({path: './env'})   // will run properly (synchronous), but it is inconsistent
+
+experimental feaure : load env variables directly when app starts
+"dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+so, import dotenv from dotenv (asynchronous) so add above snippet to package.json
+dotenv.config({path: './env'})
+
+MongoDB connected !! DB Host: cluster0-shard-00-01.2u2ui.mongodb.net
+
+if env variables change restart the server
+
+npm i cookie-parser cors
+
+use middlewares using app.use
+
+upload file using multer
+
+url encoder encodes special characters lile space by %20 or +
+
+app.use(express.urlencoded({extended: true})) allow nested objects
+
+do crud operations on cookies in browser cookie-parser
+
+higher order functions accept functions as a paramater or accept
+
+statuscodes
+
+bson data binary json
+
+mongodb generates and stores id in bson format 
+BSON is a binary-encoded serialization of JSON-like documents, it encodes type and length information, which allows it to be traversed more quickly than JSON.
+It also adds non-JSON-native data types like dates and binary data. 
+
+enable optimised searching by setting index true
+
+database designing
+
+npm i mongoose-aggregate-paginate-v2 can be used as a plugin
+
+bcrypt library for nodejs
+bcryptjs : optimised bcrypt in plain javascript with zero dependencies compatible to bcrypt
+
+npm i bcrypt jsonwebtoken
+
+jwt is a bearer token : person having this token can access data
+
+use jwtsecret.com to generate random jwt secret
+
+we will not store access token in database, but refresh token
+
+express-fileupload or multer
+
+npm install cloudinary
+
+what is a sdk
+
+take file from user using multer and store it in local server, then using cloudinary upload file to server
+
+npm install --save multer
+
+URL, URI, URN : uniform resourse locator, identifier, name
+
+http headers, meta data(key-value sent along with request and response)
+headers are used for caching, authentication, manage state(identifier user state like guest, login)
+
+request headers - from client
+response headers - from server
+representation headers - encoding/compression 
+payload headers - data
+
+most common headers
+accept: application/json (which type of data server will accept)
+User-Agent: tells from which application request has came(postman, browser which engine, os) 
+Authorization: ex bearer token
+Content-Type: pdf, image
+Cookie
+Cache-Control: when to expire data
+
+cors headers
+Access-Control-Allow-Origin
+Access-Control-Allow-Credentials
+Access-Control-Allow-Method
+
+security headers
+Cross-Origin-Embedder-Policy
+Cross-Origin-Opener-Policy
+Content-Security-Policy
+X-XSS-Protection
+
+http methods : basic set of methods that can be used to interact with server
+GET: retrieve a source
+HEAD: no message body(response headers only)
+OPTIONS: what operations are available
+TRACE: loopback test(get same data)
+DELETE: remove a resourse
+PUT: replace a resourse
+POST: interact with resourse mostly add
+PATCH: change part of a resourse
+
+http status code
+1xx informational
+2xx success
+3xx redirection
+4xx client error 
+5xx server error
+
+100 continue
+102 processing
+200 ok
+201 created
+202 accepted
+307 temporary redirect
+308 permanent redirect
+400 bad request
+401 unauthoried
+402 payment required
+404 not found
+500 internal server error
+504 gateway timeout
+
+when export default no need of {} while importing
+
+you cannot sent files through json
+use body and form data

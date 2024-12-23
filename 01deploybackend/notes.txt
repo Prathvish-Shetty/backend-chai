@@ -1,0 +1,22 @@
+node -v
+npm -v
+
+/ : home route
+
+npm init : empty node project
+npm init -y : load default
+
+restart the server when the code changes
+
+npm install express
+npm install dotenv
+
+
+deployment platforms : digitalocean, heroku, railway.app, seenode, render, cyclic.sh
+
+git init
+git add .
+git commit -m "first commit"
+git branch -M main 
+git remote add origin url
+git push -u origin main
