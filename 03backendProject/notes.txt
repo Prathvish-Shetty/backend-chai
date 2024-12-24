@@ -170,3 +170,33 @@ when export default no need of {} while importing
 
 you cannot sent files through json
 use body and form data
+
+never put / after any url in env
+
+create a variable in environment
+then create a collection, and use that environment variable there using {{}}
+
+
+MongoDB Hierarchy in Short:
+Organization:
+Top-level entity in MongoDB Atlas to manage multiple projects, billing, and teams.
+
+Project:
+Logical grouping of clusters for specific applications, environments, or teams.
+
+Cluster:
+A set of MongoDB servers hosting your data; can be standalone, sharded, or a replica set.
+
+Database:
+A logical container for collections; stores related data for an application.
+
+Collection:
+A group of documents (schema-less) within a database, similar to a table in relational databases.
+
+Organization
+ └── Project (E-commerce)
+       └── Cluster (Production)
+             └── Database: ecommerce
+                   ├── Collection: users
+                   ├── Collection: products
+                   └── Collection: orders
