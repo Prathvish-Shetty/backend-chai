@@ -9,7 +9,7 @@ cloudinary.config({
 
 const uploadOnCloudinary = async (localFilePath) => {
     try {
-        if(!localFilePath)  return null
+        if (!localFilePath) return null
         // upload the file on cloudinary
         const response = await cloudinary.uploader.upload(localFilePath, {
             resource_type: "auto"
@@ -24,4 +24,14 @@ const uploadOnCloudinary = async (localFilePath) => {
     }
 }
 
-export { uploadOnCloudinary }
+const deleteFromCloudinary = async (publicUrl) => {
+    try {
+        const response = cloudinary.uploader.destroy('publicUrl',
+            function (result) { console.log(result) }
+        );
+    } catch (error) {
+        return error
+    }
+}
+
+export { uploadOnCloudinary, deleteFromCloudinary }

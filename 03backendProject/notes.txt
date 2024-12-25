@@ -1,3 +1,5 @@
+project model diagram: https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj
+
 git dont track empty folders, hence keep .gitkeep file in that folder
 public is used to keep images temporarily and then store them in cloud  
 
@@ -200,3 +202,86 @@ Organization
                    ├── Collection: users
                    ├── Collection: products
                    └── Collection: orders
+
+
+access token are short lived, refresh token are long lived which is stored in DB
+
+when res is not used: we can name it as _
+
+how access tokens can be generated using refresh tokens: user should enter an endpoint
+
+When the access token expires:
+The client sends the refresh token to the authentication server in a secure request to get a new access token.
+The authentication server validates the refresh token:
+Integrity: Checks if the token is valid and has not been tampered with.
+Expiration: Ensures the token is not expired.
+Blacklist/Revocation: Confirms the token hasn't been revoked (e.g., user logout).
+If the refresh token is valid, the server generates:
+A new access token.
+Optionally, a new refresh token (token rotation).
+Token rotation involves issuing a new refresh token every time the old one is used.
+This improves security by invalidating the previous refresh token, reducing the risk of token replay attacks.
+
+we could have used an array to store subscribers and subscriptions of a user, but there can be millions of subscribers, 
+doing crud operations would be difficult(expensive operations)
+
+channel, subscriber is an individual document
+to find number of subscribers for a channel, count how many documents have this channel name 
+to find number of subscriptions of a channel/user find the number of documents which has its name in subscribers
+
+get subscribers from channel and channel from subscribers
+
+mongodb aggregation pipelines 
+
+left join
+aggregation->text
+
+[
+  {
+    $lookup: {
+      from: "authors",
+      localField: "author_id",
+      foreignField: "_id",
+      as: "author_details"
+    }
+  },
+  {
+    $addFields: {
+      author_details: {
+        $first: "$author_details"
+      }
+    }
+  }
+]
+or
+[
+  {
+    $lookup: {
+      from: "authors",
+      localField: "author_id",
+      foreignField: "_id",
+      as: "author_details"
+    }
+  },
+  {
+    $addFields: {
+      author_details: {
+        $arrayElemAt: ["$author_details", 0]
+      }
+    }
+  }
+]
+return value is an array which has an object
+use $before any field
+
+stage -> add stage -> select -> learn some options
+
+what datatype do aggregate returns : array
+
+operators in MongoDB : $addFields
+
+nested lookup
+users -> watch history -> videos -> owner(user)
+
+mongodb id is : _id: ObjectId('random digits and alphabets') 
+only string is not mongodb id, mongoose internally converts id to mongodb ObjectId when use find or findBy...
